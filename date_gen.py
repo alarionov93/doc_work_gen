@@ -19,7 +19,7 @@ except IndexError:
 	target_weekdays = [wd_1]
 
 now_month = dt.datetime.now().month
-now_month = dt.datetime.now().year
+now_year = dt.datetime.now().year
 
 try:
 	dt.date(now_year, now_month, 31)
@@ -42,45 +42,7 @@ for d in target_dates:
 	if d.weekday() in target_weekdays:
 		res_dates.append("%d.%d.%d" % (d.day, d.month, d.year))
 
-open('test.csv', 'w').writelines(["%s,\n" % x for x in res_dates])
-
-#sheet = xlrd.open_workbook('test.xlsx')
-#if __name__ == '__main__':
-#	print('hello')
-# dates = [6,10,15,17,22,25,30]
-themes = [
-	'Введение в понятие алгоритма. Виды алгоритмов',
-	'Обзор актуальных языков программирования',
-	'Операторы ввода/вывода и ариф. действия',
-	'Условные операторы',
-	'Создание текстовой игры с нелинейным сюжетом',
-	'Операторы повторения',
-	'Создание матрицы',
-	'Массивы',
-	'Введение в предмет. Схематехника',
-	'Радиокомпоненты и принципиальные схемы',
-	'Составление схемы звукового генератора',
-
-]
-
-wb = xlwt.Workbook()
-sht = wb.add_sheet('1 Учёт пройденного материала')
-
-for r_id in range(len(res_dates)):
-	try:
-		sht.write(r_id, 0, res_dates[r_id])
-		sht.write(r_id, 1, themes[r_id])
-		sht.write(r_id, 2, '2')
-		sht.write(r_id, 3, 'Ларионов А.А.')
-	except Exception:
-		print(traceback.print_exc(file=sys.stdout))
-
-sht = wb.add_sheet('2 Учёт посещаемости')
-# TODO: import from csv?
-
-wb.save('test_12.xlsx')
-
-
-
-
+# open('test.csv', 'w').writelines(["%s,\n" % x for x in res_dates])
+print(res_dates)
+print("Total dates: %s" % len(res_dates))
 
