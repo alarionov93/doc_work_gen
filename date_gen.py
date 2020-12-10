@@ -34,8 +34,10 @@ except ValueError:
 			max_month_cnt = 29
 		except ValueError:
 			max_month_cnt = 28
-for d in range(1, max_month_cnt):
+for d in range(1, max_month_cnt+1):
 	target_dates.append(dt.date(now_year, now_month, d))
+
+print(max_month_cnt)
 
 res_dates = []
 for d in target_dates:
