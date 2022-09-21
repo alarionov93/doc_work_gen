@@ -53,7 +53,7 @@ except IndexError:
 	exit(5)
 
 
-now_month = dt.datetime.now().month
+now_month = int(dt.datetime.now().month-1)
 now_year = dt.datetime.now().year
 
 try:
@@ -69,6 +69,8 @@ except ValueError:
 			max_month_cnt = 29
 		except ValueError:
 			max_month_cnt = 28
+
+max_month_cnt = 30
 for d in range(1, max_month_cnt+1):
 	target_dates.append(dt.date(now_year, now_month, d))
 
@@ -85,7 +87,7 @@ for d in target_dates:
 		# res_dates.append("%d.%d.%d" % (d.day, d.month, d.year))
 		res_dates.append(d)
 
-# print(res_dates)
+print(res_dates)
 
 # open('test.csv', 'w').writelines(["%s,\n" % x for x in res_dates])
 
@@ -98,7 +100,7 @@ for d in target_dates:
 # itb2,6 - 21
 # itpr - 9
 # 6 занятий сгенерировано на 7.12.20
-n = 8 # the last string number not for use
+n = 0 # the last string number not for use
 themes_all = [x.strip('\n') for x in open('themes.%s.csv' % filename, 'r').readlines()]
 themes = themes_all[n:]
 print('Themes shift (new n value): %s' % (len(themes) + n )) # TODO: check this value!!
@@ -169,6 +171,7 @@ for student in p.split("\n")[1:]:
 
 	for c_id in range(len(res_dates)):
 		try:
+			print(c_id)
 			if p[c_id] == 'x':
 				val = ' '
 			elif p[c_id] == 'n':
